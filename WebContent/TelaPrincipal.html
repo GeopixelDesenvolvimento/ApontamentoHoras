@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!-- doctype do HTML5 -->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="pt-BR" class="no-js">
+<!--<![endif]-->
+
+<head lang="pt-br">
+<meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+<title>Apontamento de Horas GeoPixel</title>
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<!-- libs -->
+  <script src="lib/jquery/js/jquery-2.2.3.min.js"></script>
+
+
+</head>
+
+<body>
+	<br></br>
+	<div class="row">
+		<div class="col-md-5">
+			<img class="col-md-10" src="img/geopx.png" align="left">
+		</div>
+		<br></br>
+
+		<div class="col-md-7">
+			<form name="form-usuario">
+				<label class="col-md-2 control-label">Usuario</label>
+
+				<div class="col-xs-3 selectContainer">
+					<input type="text" class="form-control" id="usuario">
+				</div>
+			</form>
+			<br></br>
+
+			<div class="form-group">
+				<label class="col-md-2 control-label">Projeto</label>
+				<div class="col-xs-6 selectContainer">
+					<select class="form-control" id="Projeto">
+						<option>--Escolha o Projeto--</option>
+
+					</select>
+				</div>
+				<br></br>
+
+				<div class="form-group">
+					<label class="col-md-2 control-label">Atividade</label>
+					<div class="col-md-6 control-label">
+						<select class="form-control" id="Atividade">
+							<option>--Escolha a Atividade--</option>
+						</select>
+					</div>
+					<br></br>
+
+					<div class="form-group">
+						<label for="suscard" class="col-md-2 control-label">Sub-Atividade</label>
+						<div class="col-md-6">
+							<input type="text" class="form-control" id="sub_atividade">
+						</div>
+					</div>
+					<br></br>
+
+					<div class="form-group">
+						<label for="suscard" class="col-md-2 control-label">Data/Hora</label>
+						<div class="col-md-4">
+							<input type="text" class="form-control" id="data">
+						</div>
+
+						<div class="col-md-2">
+							<input type="text" class="form-control" id="hora">
+						</div>
+					</div>
+					<br></br> <br></br>
+
+					<div class="form-group">
+						<div class="container">
+							<div class="col-xs-5 col-xs-offset-3">
+								<button id = "btn-inicio" type="button" class="btn btn-success" onclick="modlogin.IniciarSessao();">INICIO</button>
+									<button id= "btn-fim" type="button" class="btn btn-danger" onclick="modlogin.EncerrarSessao();">FIM</button>						
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- js -->
+  <script src="js/ModuleLogin.js"></script> 
+</body>
+</html>
