@@ -15,7 +15,8 @@
 
 <!-- libs -->
   <script src="lib/jquery/js/jquery-2.2.3.min.js"></script>
-
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
 </head>
 
@@ -66,12 +67,12 @@
 
 					<div class="form-group">
 						<label for="suscard" class="col-md-2 control-label">Data/Hora</label>
-						<div class="col-md-4">
-							<input type="text" class="form-control" id="data">
+						<div class="col-md-2">
+						<input class="form-control" id="data" name="date" placeholder="DD/MM/AAAA" type="text"/> 
 						</div>
 
 						<div class="col-md-2">
-							<input type="text" class="form-control" id="hora">
+							<input class="form-control" id="hora" name="hora" placeholder="hh:mm:ss" type="text"/>
 						</div>
 					</div>
 					<br></br> <br></br>

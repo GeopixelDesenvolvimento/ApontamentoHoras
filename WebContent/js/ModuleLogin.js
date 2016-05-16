@@ -19,9 +19,14 @@ var ModuleLogin = function() {
 			$('#usuario').val(self.RetornarUsuarioWin());
 			//$('#usuario').val('marcelly.paula'); //DEBUG
 			$('#data').val(self.RetornarData());
+			
+			self.loadDataPicker();
+			
 			$('#hora').val(self.RetornarHora());
+			
 			self.LoadtListActives();
 			self.LoadtListProjts();
+			
 			self.RecuperarSessao();	
 		},
 		
@@ -45,14 +50,12 @@ var ModuleLogin = function() {
 			var url = domain + "/beginSassion";
 			
 			$.post(url,{
-				User_Name: self.RetornarUsuarioWin(),
-				Id_Atividade:$( "#Atividade option:selected" ).attr("value"),
-				Atividade:$("#Atividade option:selected" ).text(),
+				User_Name: $('#usuario').val(),
+				Id_Atividade: $( "#Atividade option:selected" ).attr("value"),
 				Id_Projeto: $("#Projeto option:selected" ).attr("value"),
-				Projeto:$("#Projeto option:selected" ).text(),
-				DataSys_Inicio: self.RetornarData(),
-				HoraSys_Inicio: self.RetornarHora(),
-				Status:"Inicio",
+				Data_Inicio: $("#data").val(),
+				Hora_Inicio: $("#hora").val(),
+				Status: "Inicio",
 				Sub_atividade:"",
 			},
 			function(data,status){
@@ -76,8 +79,8 @@ var ModuleLogin = function() {
 				Atividade:$("#Atividade option:selected" ).text(),
 				Id_Projeto: $("#Projeto option:selected" ).attr("value"),
 				Projeto:$("#Projeto option:selected" ).text(),
-				DataSys_Fim: self.RetornarData(),
-				HoraSys_Fim: self.RetornarHora(),
+				Data_Fim: $("#data").val(),
+				Hora_Fim: $("#hora").val(),
 				Status:"Fim",
 				Sub_atividade:"",
 			},
@@ -100,8 +103,8 @@ var ModuleLogin = function() {
 				async : true,
 				success : function(data) {
 					if (data) {
-						$("#hora").val(data[0].HoraSys_Inicio);
-						$("#data").val(data[0].DataSys_Inicio);
+						$("#hora").val(data[0].Hora_Inicio);
+						$("#data").val(data[0].Data_Inicio);
 						$("#sub_atividade").text(data[0].Sub_atividade);
 						$('#Atividade').prop('value', data[0].Id_Atividade);
 						$('#Projeto').prop('value', data[0].Id_Projeto);
@@ -182,20 +185,34 @@ var ModuleLogin = function() {
 		/**
 		 * Funcao responsavel por coletar a data atual do sistema
 		 */
+		loadDataPicker: function(){
+			$(document).ready(function(){
+				var date_input=$('input[name="date"]'); //our date input has the name "date"
+				var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+				date_input.datepicker({
+					format: 'dd/mm/yyyy',
+					container: container,
+					todayHighlight: true,
+					autoclose: true,			
+				})
+			});
+		},
+		
+		/**
+		 * Funcao responsavel por coletar a data atual do sistema
+		 */
 		RetornarData: function(){
 			now = new Date();
 			num_dia = now.getDate();
 			dia = now.getDay();
-			mes = now.getMonth();
+			mes = now.getMonth()+1;
 			ano = now. getFullYear();
 
-			diaSemana = new Array("Domingo","Segunda-feira","Terça-feira","Quarta-feira","Quinta-feira","Sexta-feira","Sábado");
-			nomeMes = new Array("Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro");
-			dataext = diaSemana[dia] + ", " + num_dia + " de " + nomeMes[mes] + " de " + ano;
+			dataext =  num_dia + " / " + mes + " / " + ano;
 			
 			return dataext;
 		},
-			
+		
 		/**
 		 * Funcao responsavel por coletar a hora atual do sistema
 		 * @returns {String}
