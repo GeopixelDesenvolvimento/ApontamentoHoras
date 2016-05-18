@@ -1,6 +1,7 @@
 /**
  * Classe responsavel por fazer a conexao do sevidor (ApontamentoGeopx-Server) com o Cliente (ApontamentoGeopx-Cliente)
- * Dessa forma interagir o cliente com o servidor.
+ * Dessa forma interagir o cliente com o servidor atraves das funções descritas abaixo:
+ * 
  */
 
 var ModuleLogin = function() {
@@ -20,10 +21,10 @@ var ModuleLogin = function() {
 			//$('#usuario').val('marcelly.paula'); //DEBUG
 			$('#data').val(self.RetornarData());
 			
-			self.loadDataPicker();
+			self.LoadDataPicker();
 			
 			$('#hora').val(self.RetornarHora());
-			
+						
 			self.LoadtListActives();
 			self.LoadtListProjts();
 			
@@ -56,7 +57,7 @@ var ModuleLogin = function() {
 				Data_Inicio: $("#data").val(),
 				Hora_Inicio: $("#hora").val(),
 				Status: "Inicio",
-				Sub_atividade:"",
+				Sub_atividade:$("#Sub_atividade").val(),
 			},
 			function(data,status){
 				if(data){
@@ -82,7 +83,7 @@ var ModuleLogin = function() {
 				Data_Fim: $("#data").val(),
 				Hora_Fim: $("#hora").val(),
 				Status:"Fim",
-				Sub_atividade:"",
+				Sub_atividade:$("#Sub_atividade").val(),
 			},
 			function(data,status){
 				if(data){
@@ -105,7 +106,7 @@ var ModuleLogin = function() {
 					if (data) {
 						$("#hora").val(data[0].Hora_Inicio);
 						$("#data").val(data[0].Data_Inicio);
-						$("#sub_atividade").text(data[0].Sub_atividade);
+						$("#Sub_atividade").val(data[0].Sub_atividade);
 						$('#Atividade').prop('value', data[0].Id_Atividade);
 						$('#Projeto').prop('value', data[0].Id_Projeto);
 						
@@ -167,7 +168,7 @@ var ModuleLogin = function() {
 				}
 			});
 		},
-		
+	
 		/**
 		 * Funcao responsavel por coletar o 
 		 * usuario do sistema
@@ -185,7 +186,7 @@ var ModuleLogin = function() {
 		/**
 		 * Funcao responsavel por coletar a data atual do sistema
 		 */
-		loadDataPicker: function(){
+		LoadDataPicker: function(){
 			$(document).ready(function(){
 				var date_input=$('input[name="date"]'); //our date input has the name "date"
 				var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
